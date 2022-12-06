@@ -12,7 +12,7 @@
     <canvas width="640" height="360" id="myCanvas"></canvas>
     <script>
         window.addEventListener('load', function(){
-        /* always start and end with this */
+        
 
         const GAME_WIDTH = 640;
         const GAME_HEIGHT = 360;
@@ -54,40 +54,14 @@
             height: 40,
             speed: 1
             }
-            /* {
-            xPos: 260,
-            yPos: 100,
-            width: 90,
-            height: 40,
-            speed: 2,
-            },
-            {
-            xPos: 380,
-            yPos: 100,
-            width: 40,
-            height: 60,
-            speed: 3,
-            },
-            {
-            xPos: 450,
-            yPos: 100,
-            width: 10,
-            height: 10,
-            speed: 7,
-            },
-            {
-            xPos: 590,
-            yPos: 200,
-            width: 500,
-            height: 30,
-            speed: 1
-            } */
+            
         ];
 
         let player = {
-            xPos: 50,
-            yPos: 100,
+            xPos: 10,
+            yPos: 160,
             speedX: 2,
+            speedY: 2,
             width: 40,
             height: 40,
             isMoving: false
@@ -95,15 +69,15 @@
 
         let goal = {
 
-            xPos:600,
-            yPos: 100,
+            xPos:580,
+            yPos: 160,
             width: 50,
             height: 36
         } 
 
         function moveSelection(event){
 
-            switch(event.keycode){
+            switch(event.keyCode){
 
                 case 38:
                 moveUp();
@@ -122,7 +96,7 @@
 
         function moveLeft(){
 
-            player.xPos += player.speedx - 5;
+            player.xPos += player.speedX - 5;
         }
         function moveUp(){
 
@@ -153,6 +127,7 @@
         let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
         
+        window.addEventListener("keydown", moveSelection, true);
         canvas.addEventListener("mousedown", movePlayer);
         canvas.addEventListener("mouseup", stopPlayer);
         canvas.addEventListener("touchstart", movePlayer);
@@ -188,7 +163,7 @@
                     if(checkForCollision(player, element)){
                         gameIsLive = false;
                         alert("Game Over!");
-                        //reload page
+                        
                         window.location = ";"
                         }
                     element.yPos += element.speed;
@@ -217,17 +192,7 @@
 
                 ctx.drawImage(sprites.enemy, element.xPos, element.yPos);
             })
-            /* ctx.fillStyle = "#64DC11";
-            ctx.fillRect(goal.xPos, goal.yPos, goal.width, goal.height);
-
-            ctx.fillStyle = "#ECB712";
-            ctx.fillRect(player.xPos, player.yPos, player.width, player.height); */
-
-            /* for(var i = 0; i < enemies.length; i++)
-                {
-                ctx.fillStyle = "#80224A";
-                ctx.fillRect(enemies[i].xPos, enemies[i].yPos, enemies[i].height, enemies[i].width);
-                } */
+            
             }
             
             let checkForCollision = function(rect1, rect2){
@@ -252,6 +217,7 @@
             sprites.goal = new Image();
             sprites.goal.src = "images/treasurechest.png";
         }
+        
         
         load();
         step();
