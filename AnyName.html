@@ -10,6 +10,9 @@
 <body>
     <h1>Can You Make It Through?</h1>
     <canvas width="640" height="360" id="myCanvas"></canvas>
+
+    <h1 id = "Score"> Score: </h1>
+
     <script>
         window.addEventListener('load', function(){
         
@@ -17,6 +20,8 @@
         const GAME_WIDTH = 640;
         const GAME_HEIGHT = 360;
         let gameIsLive = true;
+        let balloonsHit = 0;
+        let hit = 0;
 
         let enemies = [
             {
@@ -135,6 +140,8 @@
 
         let step = function()
         {
+            /* myScore = new component("30px", "Consolas", "black", 280, 40, "text"); */
+            
             update();
             draw();
             if(gameIsLive){
@@ -143,8 +150,20 @@
             }
         };
 
+        function checkScore(){
+
+            if(hit > balloonsHit){
+
+                balloonsHit = hit;
+            }
+        }
+
+        document.getElementById("Star").innerHTML = "I'm a blackhole!"
+
         let update = function()
             {
+            
+            checkScore();
             
              if(checkForCollision(player, goal)){
 
@@ -184,6 +203,9 @@
             {
             ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
             
+            /* ctx.fillStyle = "rgb(200, 0, 100)";
+            ctx.fillRect(10, 10, 30, 50); */
+
             ctx.drawImage(sprites.background, 0, 0);
             ctx.drawImage(sprites.player, player.xPos, player.yPos);
             ctx.drawImage(sprites.goal, goal.xPos, goal.yPos);
