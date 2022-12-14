@@ -1,0 +1,16 @@
+/* #Background{
+    background-color: black;
+} */
+.inline-block-child {
+    display: inline-block;
+  }
+#score{
+    /* color: black; 
+    text-align: center; */
+    font-size: 50px
+}
+#the{
+    /* color: black; 
+    text-align: center; */
+    font-size: 50px
+}
