@@ -6,12 +6,20 @@ window.addEventListener('load', function(){
     const GAME_HEIGHT = 360;
     let gameIsLive = true;
     let playerScore = 0;
-    let hit = 0;
+    let hit = 1;
+    const audioElement1 = new Audio("blast.mp3");
 
     let enemies = [
-        { id = enemy1
+        { /* id = enemy1 */
         xPos: 100,
         yPos: 100,
+        width: 40,
+        height: 40,
+        speed: 1,
+        },
+        { 
+        xPos: 160,
+        yPos: 120,
         width: 40,
         height: 40,
         speed: 1,
@@ -38,11 +46,11 @@ window.addEventListener('load', function(){
         speed: 3,
         },
         {
-        xPos: 590,
+        xPos: 540,
         yPos: 200,
         width: 40,
         height: 40,
-        speed: 1
+        speed: 5
         }
         
     ];
@@ -59,7 +67,7 @@ window.addEventListener('load', function(){
 
     let goal = {
 
-        xPos:580,
+        xPos:640,
         yPos: 160,
         width: 50,
         height: 36
@@ -153,7 +161,7 @@ window.addEventListener('load', function(){
          if(checkForCollision(player, goal)){
 
             gameIsLive = false;
-            alert ("You win!");
+            alert ("GAME OVER");
             window.location = "";
         } 
 
@@ -169,6 +177,8 @@ window.addEventListener('load', function(){
                     alert("Game Over!");
                     
                     window.location = ";" */
+                    audioElement1.play();
+                    element.xPos = 1000;
                     document.getElementById("score").innerHTML = hit;
                     hit++;
                 }
